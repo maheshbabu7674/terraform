@@ -35,3 +35,16 @@ resource "aws_instance" "ec2_example" {
            Name = "${local.staging_env} - Terraform EC2"
    }
 }
+
+
+#output:
+
+# For subnet:
+# stating-subnet-tag
+
+# For vpc: 
+#stating-vpc-tag
+
+
+#For aws instance:
+#staging - Terraform EC2

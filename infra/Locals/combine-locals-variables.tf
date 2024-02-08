@@ -14,3 +14,10 @@ variable server_name {
 locals {
     server_details = "${var.location}-${var.server_name}"
 }
+
+
+#output:
+
+# finland-primary-app-server
+
+
