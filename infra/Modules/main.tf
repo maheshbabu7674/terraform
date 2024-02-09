@@ -5,9 +5,9 @@ provider "aws" {
 }
 
 module "jhooq-webserver-1" {
-  source = ".//module-1"
+  source = ".//module-appache-01"
 }
 
 module "jhooq-webserver-2" {
-  source = ".//module-2"
+  source = ".//module-appach-02"
 }
