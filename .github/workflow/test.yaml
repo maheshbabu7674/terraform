@@ -1,0 +1,52 @@
+name: 'Terraform Apply For ResourceGroups'
+
+on: 
+  workflow_dispatch: # Allows manual triggering from the GitHub Actions tab
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches:
+  #     - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      # - name: Azure Login
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform Init
+        run: |
+          cd resourcegroups
+          cd striker-rg
+          terraform init 
+
+      - name: Terraform Plan
+        run: |
+          cd resourcegroups
+          cd striker-rg
+          terraform plan 
+
+      # - name: Terraform Apply
+      #   run: |
+      #     cd resourcegroups
+      #     cd striker-rg
+      #     terraform apply -auto-approve 
+          
+      - name: Terraform Destroy
+        run: |
+          cd resourcegroups
+          cd striker-rg
+          terraform destroy -target=azurerm_resource_group.this -auto-approve    
